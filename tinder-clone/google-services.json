@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:694876637520:android:dcf60a140b69fd21978455",
+        "mobilesdk_app_id": "1:694876637520:android:b31a5ead291e32f3978455",
         "android_client_info": {
-          "package_name": "host.expo.exponent"
+          "package_name": "host.exp.exponent"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "694876637520-gpeq728r2gt21nnek90cpmus2mbh815k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "host.exp.exponent",
+            "certificate_hash": "c1df8205bd9a7a7dc9a2c8ce3722bf755e86b5fe"
+          }
+        },
         {
           "client_id": "694876637520-c0b1etk1phrlck2q4or1pisc3te2sgjp.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +37,13 @@
             {
               "client_id": "694876637520-c0b1etk1phrlck2q4or1pisc3te2sgjp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "694876637520-jt5vn37m8gp23cojb0b3k68967u7spmj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
             }
           ]
         }
