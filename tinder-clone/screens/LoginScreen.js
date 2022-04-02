@@ -1,27 +1,33 @@
 import { useNavigation } from "@react-navigation/core";
 import React, {useLayoutEffect} from "react";
-import { View, Text, Button, ImageBackground } from "react-native";
+import { View, Text, Button, ImageBackground, TouchableOpacity } from "react-native";
 import useAuth from "../hooks/useAuth";
-import {TailwindProvider} from 'tailwind-rn';
+
 
 const LoginScreen = () => {
-    const { signInWithGoogle, loading} = useAuth();
+    const { signInWithGoogle, loading } = useAuth();
     const navigation = useNavigation();
-    const tailwind = useTailwind();
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerShown: false
+            headerShown: false,
         });
     }, []);
 
     return (
-        <View style={tailwind('flex-1')}>
+        <View style={{
+            flex: 1
+        }}>
             <ImageBackground 
                 resizeMode='cover'
-                style={tailwind('flex-1')}
-                source={{uri: 'https://tinder.com/static/tinder.png'}}
+                style={{
+                    flex: 1
+                }}
+                source={require('../Logo.png')}
             >
+                <TouchableOpacity style={{position:'absolute',bottom: 100,width: 52, marginHorizontal: '25%', backgroundColor: 'white', borderBottomColor:100/2, overflow: "hidden", borderWidth: 3 }}>
+                        <Text style={{textAlign: 'center'}}>Sign Up or Login</Text>
+                </TouchableOpacity>
             </ImageBackground>
         </View>
         
