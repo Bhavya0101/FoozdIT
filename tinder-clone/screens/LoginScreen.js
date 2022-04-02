@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import React, {useLayoutEffect} from "react";
 import { View, Text, Button, ImageBackground, TouchableOpacity } from "react-native";
 import useAuth from "../hooks/useAuth";
+import tw from 'twrnc';
 
 
 const LoginScreen = () => {
@@ -15,19 +16,22 @@ const LoginScreen = () => {
     }, []);
 
     return (
-        <View style={{
-            flex: 1
-        }}>
+        <View style={tw`flex-1`}>
             <ImageBackground 
                 resizeMode='cover'
-                style={{
-                    flex: 1
-                }}
+                style={tw`flex-1`}
                 source={require('../Logo.png')}
             >
-                <TouchableOpacity style={{position:'absolute',bottom: 100,width: 52, marginHorizontal: '25%', backgroundColor: 'white', borderBottomColor:100/2, overflow: "hidden", borderWidth: 3 }}>
-                        <Text style={{textAlign: 'center'}}>Sign Up or Login</Text>
+                <TouchableOpacity
+                    style={[
+                        tw`absolute bottom-40 w-48 bg-white p-4 rounded-2xl`,
+                        {marginHorizontal: "25%"},
+                    ]}
+                    onPress={signInWithGoogle}                
+                >
+                    <Text style={tw`font-semibold text-center`}>Login With Google</Text>
                 </TouchableOpacity>
+
             </ImageBackground>
         </View>
         
