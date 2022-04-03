@@ -5,13 +5,7 @@ import tw from 'twrnc';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import useAuth from '../hooks/useAuth';
 
-
-const GenderPage = () => {
-    var radio_props = [
-        {label: 'Male', value: 0 },
-        {label: 'Female', value: 1 },
-        {label: 'More', value: 2 }
-    ];
+const FoodProfile = () => {
 
     const navigation = useNavigation();
     const { user, logout } = useAuth();
@@ -20,22 +14,19 @@ const GenderPage = () => {
                 headerShown: false,
             });
         }, []);
+
   return (
     <View style={{flex: 1, backgroundColor: '#674389'}}>
-        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>How Do You Identify ?</Text>
-        <RadioForm
-          radio_props={radio_props}
-          initial={0}
-        />
+        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>Ramp Your Foodie Profile</Text>
         <Button
         style={tw`absolute bottom-40 w-48 bg-white p-4 rounded-2xl`}
         title="Go On!!"
-        onPress={()=> navigation.navigate('GenderPreferrence')}
+        onPress={()=> navigation.navigate('AddPictures')}
       />
       <Button style={tw`bottom-38`} title='Logout' onPress={logout}/>
     </View>
   )
 }
 
-export default GenderPage
+export default FoodProfile
 
