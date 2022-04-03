@@ -1,11 +1,10 @@
-import { useNavigation } from "@react-navigation/core";
 import React, {useLayoutEffect} from "react";
-import { View, Text, Button, ImageBackground, TouchableOpacity } from "react-native";
-import useAuth from "../hooks/useAuth";
+import { useNavigation } from "@react-navigation/core";
+import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput } from "react-native";
 import tw from 'twrnc';
 
 const MobileNumberVerification = () => {
-
+    const navigation = useNavigation();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -13,10 +12,12 @@ const MobileNumberVerification = () => {
         });
     }, []);
 
-
   return (
     <View style={{flex: 1, backgroundColor: '#674389'}}>
-        
+        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>Let's Get Your Phone Number Verified.</Text>
+        <TextInput placeholder="Phone Number" style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
+
+        </TextInput>
     </View>
   )
 }
