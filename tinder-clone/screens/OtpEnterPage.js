@@ -4,7 +4,7 @@ import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput } from
 import tw from 'twrnc';
 import useAuth from '../hooks/useAuth';
 
-const MobileNumberVerification = () => {
+const OtpEnterPage = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
     useLayoutEffect(() => {
@@ -15,18 +15,17 @@ const MobileNumberVerification = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#674389'}}>
-        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>Let's Get Your Phone Number Verified.</Text>
-        <TextInput placeholder="Phone Number" style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
+        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>Enter the Verification Code.</Text>
+        <TextInput placeholder="Verification Code" style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
         </TextInput>
         <Button
         style={tw`absolute bottom-40 w-48 bg-white p-4 rounded-2xl`}
-        title="Send Verififcation Code"
-        onPress={()=> navigation.navigate('OtpEnterPage')}
+        title="Complete Verification"
+        onPress={()=> navigation.navigate('NamePage')}
       />
       <Button style={tw`bottom-38`} title='Logout' onPress={logout}/>
     </View>
-    
   )
 }
 
-export default MobileNumberVerification
+export default OtpEnterPage

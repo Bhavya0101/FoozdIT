@@ -5,7 +5,10 @@ import ChatScreen from './screens/ChatScreen';
 import HomeScreen from './screens/HomeScreen';
 import MobileNumberVerification from './screens/MobileNumberVerification';
 import LoginScreen from './screens/LoginScreen';
-
+import OtpEnterPage from './screens/OtpEnterPage';
+import NamePage from './screens/NamePage';
+import BdayDatePage from './screens/BdayDatePage';
+import GenderPage from './screens/GenderPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,12 +24,14 @@ const StackNavigator = () => {
             {user ? (
                 <>
                     <Stack.Screen name="Mobile" component={MobileNumberVerification} />
-                    <Stack.Screen name="Home" component={HomeScreen} />
-                    <Stack.Screen name="Chat" component={ChatScreen} />
+                    <Stack.Screen name="OtpEnterPage" component={OtpEnterPage} />
+                    <Stack.Screen name="NamePage" component={NamePage} />
+                    <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
+                    <Stack.Screen name="GenderPage" component={GenderPage} />
                 </>
             ) : (
-                <Stack.Screen 
-                name="Login" component={LoginScreen} />
+                <Stack.Screen name="Login" component={LoginScreen} />
+                
             )}
 
         </Stack.Navigator>
