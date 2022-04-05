@@ -13,7 +13,7 @@ const DUMMY_DATA = [
     firstName: "Aditya",
     lastName: "Mathur",
     occupation: "Software Engineer",
-    photo: require("../Adii-1.jpeg"),
+    photo: "https://i.postimg.cc/2yM2CC5x/Adii-1.jpg",
     age: 23,
     id: 1,
   },
@@ -21,7 +21,7 @@ const DUMMY_DATA = [
     firstName: "Naman",
     lastName: "Jain",
     occupation: "Co-Founder @ FoozdIT",
-    photo: require("../Naman-1.png"),
+    photo: "https://i.postimg.cc/85HC8Ctq/Naman-1.png",
     age: 24,
     id: 2
   },
@@ -29,7 +29,7 @@ const DUMMY_DATA = [
     firstName: "Bhavya",
     lastName: "Sharma",
     occupation: "Co-Founder @ FoozdIT",
-    photo: require("../Bhavya-1.png"),
+    photo: "https://i.postimg.cc/bwcfThRb/Bhavya-1.png",
     age: 22,
   },
 
@@ -75,12 +75,25 @@ const HomeScreen = () => {
         <Swiper 
             containerStyle={{backgroundColor: "transparent"}}
             cards={DUMMY_DATA}
+            stackSize={5}
+            cardIndex={0}
+            animateCardOpacity
             renderCard = {(card) => (
               <View key={card.id} style={tw`relative bg-white h-3/4 rounded-xl`}>
                 <Image
                   style={tw`h-full w-full rounded-xl`}
                   source={{ uri: card.photo }}
                 />
+
+                <View style={[tw`text-xl bottom-10 left-8 text-gray-50`, {fontWeight: 'bold'}]}>
+                  <View>
+                    <Text>
+                      {card.firstName} {card.lastName}
+                    </Text>
+                    <Text>{card.age}</Text>
+                  </View>
+                </View>
+
               </View>
             )}
           />
