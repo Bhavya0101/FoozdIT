@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
+import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
 const HomeScreen = () => {
@@ -13,12 +14,15 @@ const HomeScreen = () => {
     <SafeAreaView>
       {/* Headrer */}
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity style={tw`absolute left-5 top-3`}>
               <Image 
                 style={tw`h-10 w-10 rounded-full`}
                 source = {{uri: user.photoURL}}
-  
               />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Text style={[tw`absolute left-39 top-6 text-xl` , {color: '#674389',fontWeight: 'bold',fontSize:30}]}>Foozd</Text>
           </TouchableOpacity>
         </View>
 
@@ -26,10 +30,7 @@ const HomeScreen = () => {
 
 
       {/* HEader End */}
-      <Text>I am the Homescreen</Text>
-      <Button title="Go to Chat Screen" onPress={()=> navigation.navigate('Chat')}/>
-
-      <Button title='Logout' onPress={logout}/>
+    
     </SafeAreaView>
   )
 }
