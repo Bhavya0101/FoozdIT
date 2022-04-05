@@ -4,6 +4,7 @@ import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput } from
 import tw from 'twrnc';
 import useAuth from '../hooks/useAuth';
 
+
 const MobileNumberVerification = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
