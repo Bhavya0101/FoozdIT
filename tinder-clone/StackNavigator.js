@@ -12,12 +12,14 @@ import GenderPage from './screens/GenderPage';
 import GenderPreferrence from './screens/GenderPreferrence';
 import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
+import AnimatedSplash from "react-native-animated-splash-screen";
 
 const Stack = createNativeStackNavigator();
 
 
 const StackNavigator = () => {
     const { user } = useAuth();
+    
     return (
         <Stack.Navigator
             ScreenOptions={{

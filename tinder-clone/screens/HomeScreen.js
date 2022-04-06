@@ -3,7 +3,6 @@ import React, {useLayoutEffect} from "react";
 import { useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
-import { backgroundColor, color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { AntDesign, Entyppo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
 
@@ -85,12 +84,15 @@ const HomeScreen = () => {
                   source={{ uri: card.photo }}
                 />
 
-                <View style={[tw`text-xl bottom-10 left-8 text-gray-50`, {fontWeight: 'bold'}]}>
+                <View style={[tw`absolute bottom-0 w-full flex-row jutify-between
+                                items-between h-20 px-6 py2-2 rounded-b-xl`]}>
                   <View>
-                    <Text>
-                      {card.firstName} {card.lastName}
+                    <Text style={[tw`text-xl font-bold`, {color: 'white'}]}>
+                      {card.firstName} {card.lastName} {','} {card.age}
                     </Text>
-                    <Text>{card.age}</Text>
+                    <Text>
+                      {card.occupation}
+                    </Text>
                   </View>
                 </View>
 
@@ -110,4 +112,5 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomeScreen;
+
