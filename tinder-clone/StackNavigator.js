@@ -29,6 +29,7 @@ const StackNavigator = () => {
             {user ? (
                 <>
                     
+                    
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="Chat" component={ChatScreen} />
                     <Stack.Screen name="Mobile" component={MobileNumberVerification} />

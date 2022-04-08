@@ -1,9 +1,9 @@
-import { View, Text, Button, SafeAreaView, TouchableOpacity, Image } from 'react-native'
-import React, {useLayoutEffect} from "react";
+import { View, Text, Button, SafeAreaView, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import React, {useLayoutEffect, useRef} from "react";
 import { useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
-import { AntDesign, Entyppo, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
 
 
@@ -39,6 +39,7 @@ const DUMMY_DATA = [
 const HomeScreen = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
+    const swipeRef = useRef(null);
     console.log(user)
 
     useLayoutEffect(() => {
@@ -49,7 +50,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      {/* Headrer */}
+      {/* Header */}
         <View style={[tw`flex-row items-center justify--between px-5`, {backgroundColor:'#674389'}]}>
           <TouchableOpacity style={tw`absolute left-5 top-11`} onPress={logout}>
               <Image 
@@ -70,27 +71,53 @@ const HomeScreen = () => {
       {/* Header End */}
 
       {/* Cards  Start*/} 
-      <View style={tw`flex-1 -mt-6 top-24`}>
+      <View style={tw`flex-1 -mt-3 top-17`}>
         <Swiper 
             containerStyle={{backgroundColor: "transparent"}}
             cards={DUMMY_DATA}
-            stackSize={5}
+            stackSize={3}
             cardIndex={0}
             animateCardOpacity
+            verticalSwipe={false}
+            onSwipedLeft= {() => {
+              console.log("Swipe Left")
+            }}
+            onSwipedRight= {() => {
+              console.log("Swipe Right")
+            }}
+            overlayLabels={{
+              left: {
+                title: "Nope",
+                style:{
+                  label: {
+                    textAlign: "right",
+                    color: "red",
+                  },
+                },
+              },
+              right: {
+                title: "Like",
+                style:{
+                  label: {
+                    color: "#674389",
+                  },
+                },
+              },
+            }}
             renderCard = {(card) => (
-              <View key={card.id} style={tw`relative bg-white h-3/4 rounded-xl`}>
+              <View key={card.id} style={tw`relative bg-white h-140 rounded-xl`}>
                 <Image
                   style={tw`h-full w-full rounded-xl`}
                   source={{ uri: card.photo }}
                 />
 
                 <View style={[tw`absolute bottom-0 w-full flex-row jutify-between
-                                items-between h-20 px-6 py2-2 rounded-b-xl`]}>
+                                items-between h-20 px-6 py-2`, styles.cardShadow]}>
                   <View>
-                    <Text style={[tw`text-xl font-bold`, {color: 'white'}]}>
+                    <Text style={[tw`text-xl font-bold`, styles.textDecoration]}>
                       {card.firstName} {card.lastName} {','} {card.age}
                     </Text>
-                    <Text>
+                    <Text style={styles.textDecoration}>
                       {card.occupation}
                     </Text>
                   </View>
@@ -104,6 +131,44 @@ const HomeScreen = () => {
 
       {/* Cards  Ends*/} 
 
+      {/* Bottom Icons*/} 
+
+              <View style={tw`flex flex-row justify-evenly`}>
+
+
+                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
+                    <Entypo name="heart" size={35} color="#674389"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
+                    <Image source={require('../foozdIcon.png')} style={styles.bottomFIcon}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
+                  <FontAwesome5 name="utensils" size={24} color="#674389" />
+                </TouchableOpacity>
+                
+
+                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
+                    <Entypo name="list" size={35} color="#674389"/>
+                </TouchableOpacity>
+              
+
+              
+
+                  
+
+                 
+              </View>
+
+
+
+
+
+
+
+      {/* Bottom Icoons*/} 
+
 
 
       
@@ -113,4 +178,32 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen;
+
+
+const styles = StyleSheet.create({
+  cardShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+  textDecoration: {
+    color: 'white',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 60,
+  },
+  bottomFIcon: {
+    width: 30,
+    height: 30,
+  },
+});
 
