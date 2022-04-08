@@ -72,7 +72,8 @@ const HomeScreen = () => {
 
       {/* Cards  Start*/} 
       <View style={tw`flex-1 -mt-3 top-17`}>
-        <Swiper 
+        <Swiper
+          ref={swipeRef} 
             containerStyle={{backgroundColor: "transparent"}}
             cards={DUMMY_DATA}
             stackSize={3}
