@@ -33,6 +33,8 @@ const LoginScreen = () => {
                     <Text style={tw`font-semibold text-center`}>Login With Google</Text>
                 </TouchableOpacity>
 
+                
+
             </ImageBackground>
         </View>
         

@@ -136,7 +136,6 @@ const HomeScreen = () => {
 
               <View style={tw`flex flex-row justify-evenly`}>
 
-
                 <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
                     <Entypo name="heart" size={35} color="#674389"/>
                 </TouchableOpacity>
@@ -150,15 +149,10 @@ const HomeScreen = () => {
                 </TouchableOpacity>
                 
 
-                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
+                <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]} onPress={logout}>
                     <Entypo name="list" size={35} color="#674389"/>
                 </TouchableOpacity>
-              
-
-              
-
-                  
-
+          
                  
               </View>
 
