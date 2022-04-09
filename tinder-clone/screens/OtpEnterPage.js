@@ -22,6 +22,7 @@ const OtpEnterPage = () => {
         <TextInput
           value={otp}
           onChangeText={text => setOtp(text)} 
+          keyboardType="numeric"
           placeholder="Verification Code" 
           style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
         </TextInput>
