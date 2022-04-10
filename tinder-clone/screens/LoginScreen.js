@@ -21,7 +21,7 @@ const LoginScreen = () => {
             <ImageBackground 
                 resizeMode='cover'
                 style={tw`flex-1`}
-                source={require('../Logo.png')}
+                source={require('../pictures/Logo.png')}
             >
                 <TouchableOpacity
                     style={[
