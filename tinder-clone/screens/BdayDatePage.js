@@ -6,13 +6,18 @@ import useAuth from '../hooks/useAuth';
 import { db } from "../firebase"
 import { doc, setDoc } from "@firebase/firestore"
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import DatePicker from 'react-native-date-picker';
+
+
 
 const BdayDatePage = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
     const [bday, setbday] = useState(null);
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
     const incompleteForm = !bday;
+
 
     const updateBday = () => {
       setDoc(doc(db,'users', user.uid), {
@@ -34,8 +39,10 @@ const BdayDatePage = () => {
   return (
     <View style={{flex: 1, backgroundColor: '#674389'}}>
         <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>When is Your Birthday?</Text>
-        <TextInput placeholder="Birthday" style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
-        </TextInput>
+        <Button title="Open" onPress={() => setOpen(true)} />
+        <DatePicker date={date} onDateChange={setDate} />
+
+  
         <TouchableOpacity
            disabled={incompleteForm}
           style={[tw`items-center justify-center rounded-full w-156 h-36`]}

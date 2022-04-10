@@ -115,7 +115,13 @@ const HomeScreen = () => {
                 <View style={[tw`absolute bottom-0 w-full flex-row jutify-between
                                 items-between h-20 px-6 py-2`, styles.cardShadow]}>
                   <View>
-                    <Text style={[tw`text-xl font-bold`, styles.textDecoration]}>
+                    <Text style={[tw`text-xl font-bold`, 
+                      {
+                        color:'#F4F0F6', 
+                        shadowColor: "#000", 
+                        shadowOffset: {width: 0, height: 10,}
+                      }]}>
+                      
                       {card.firstName} {card.lastName} {','} {card.age}
                     </Text>
                     <Text style={styles.textDecoration}>
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   textDecoration: {
-    color: 'white',
+    color:'#F4F0F6',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
