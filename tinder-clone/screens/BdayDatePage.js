@@ -4,9 +4,10 @@ import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput, Style
 import tw from 'twrnc';
 import useAuth from '../hooks/useAuth';
 import { db } from "../firebase"
-import { doc, setDoc } from "@firebase/firestore"
+import { doc, setDoc, updateDoc } from "@firebase/firestore"
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { name } from './NamePage';
 
 
 
@@ -17,8 +18,9 @@ const BdayDatePage = () => {
     const [mode, setMode] = useState('date')
     const [show, setShow] = useState(false);
     const [text, setText] = useState('Empty'); 
+    const incompleteForm = !text;
 
-    const onChange = (event, selectDate) => {
+    const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;
       setShow(Platform.OS === 'ios');
       setDate(currentDate);
@@ -34,16 +36,11 @@ const BdayDatePage = () => {
       setMode(currentMode);
     }
 
-
-  
-
-
     const updateBday = () => {
-      setDoc(doc(db,'users', user.uid), {
-        id:user.uid,
-        name: fName
+      updateDoc(doc(db,'users', user.uid), {
+        dateOfBirth: text
       }).then(() => {
-        navigation.navigate('BdayDatePage')
+        navigation.navigate('GenderPage')
       })
       .catch((error) => {
         alert(error.message);
@@ -75,7 +72,9 @@ const BdayDatePage = () => {
             onChange={onChange}
           />
         )}
-        
+        <Text 
+          value={text} 
+          style={{fontWeight:'bold', fontSize: 20, flex:1, backgroundColor: '#674389', alignItems:'center', justifyContent:"center"}}>{text}</Text>
         <TouchableOpacity
            
           style={[tw`items-center justify-center rounded-full w-156 h-36`]}
