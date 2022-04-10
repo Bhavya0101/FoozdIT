@@ -1,39 +1,63 @@
-import React, {useLayoutEffect} from "react";
+import React, {useLayoutEffect, useState} from "react";
 import { useNavigation } from "@react-navigation/core";
-import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import tw from 'twrnc';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import useAuth from '../hooks/useAuth';
+import RadioButtonRN from 'radio-buttons-react-native';
+import { db } from "../firebase"
+import { doc, setDoc, updateDoc } from "@firebase/firestore"
 
+const data = [
+  {
+    label: 'Male'
+   },
+   {
+    label: 'Female'
+   }
+  ];
 
 const GenderPage = () => {
-    var radio_props = [
-        {label: 'Male', value: 0 },
-        {label: 'Female', value: 1 },
-        {label: 'More', value: 2 }
-    ];
 
-    const navigation = useNavigation();
-    const { user, logout } = useAuth();
-        useLayoutEffect(() => {
-            navigation.setOptions({
-                headerShown: false,
-            });
-        }, []);
+  const navigation = useNavigation();
+  const { user, logout } = useAuth();
+  const [gender, setGender] = useState(null);
+  const incompleteForm = !gender;
+
+  const updateGender = () => {
+    updateDoc(doc(db,'users', user.uid), {
+      Gender: gender
+    }).then(() => {
+      navigation.navigate('GenderPreferrence')
+    })
+    .catch((error) => {
+      alert(error.message);
+    })
+  };
+  
+      useLayoutEffect(() => {
+          navigation.setOptions({
+              headerShown: false,
+          });
+      }, []);
   return (
-    <View style={{flex: 1, backgroundColor: '#674389'}}>
-        <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>How Do You Identify ?</Text>
-        <RadioForm
-          radio_props={radio_props}
-          initial={0}
-        />
-        <Button
-        style={tw`absolute bottom-40 w-48 bg-white p-4 rounded-2xl`}
-        title="Go On!!"
-        onPress={()=> navigation.navigate('GenderPreferrence')}
+  <View style={{flex: 1, backgroundColor: '#674389'}}>
+      <Text style={tw` pt-35 items-center font-semibold px-3 text-white text-4xl antialiased `}>What is Your Ideal Foozdie ?</Text>
+      <RadioButtonRN
+        value={gender}
+        onChangeText={setGender}
+        selectedBtn={(e) => console.log(e.label)}
+        data={selectedBtn}
       />
-      <Button style={tw`bottom-38`} title='Logout' onPress={logout}/>
-    </View>
+      <TouchableOpacity
+           
+          style={[tw`items-center justify-center rounded-full w-156 h-36`]}
+          onPress={updateGender} 
+        >
+        
+        <Ionicons name="arrow-forward" size={24} color="black" />
+      </TouchableOpacity>
+  </View>
   )
 }
 
