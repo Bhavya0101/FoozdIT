@@ -31,19 +31,11 @@ const StackNavigator = () => {
                     
                     <Stack.Group>
 
-                        <Stack.Screen name="GenderPage" component={GenderPage} />
-                        <Stack.Screen name="GenderPreferrence" component={GenderPreferrence} />
+
                         <Stack.Screen name="NamePage" component={NamePage} />
                         <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
-                        
-                        <Stack.Screen name="Home" component={HomeScreen} />
-                     
-                    
-                        
-                        
-
-                        
-                        <Stack.Screen name="Chat" component={ChatScreen} />
+                        <Stack.Screen name="GenderPage" component={GenderPage} />
+                        <Stack.Screen name="GenderPreferrence" component={GenderPreferrence} />
 
                     </Stack.Group>
 
