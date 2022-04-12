@@ -34,6 +34,17 @@ const GenderPage = () => {
       alert(error.message);
     })
   };
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+
+    let tempDate = new Date(currentDate)
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    setText(fDate)
+    console.log(fDate)
+  }
   
       useLayoutEffect(() => {
           navigation.setOptions({
