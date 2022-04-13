@@ -39,7 +39,7 @@ const GenderPage = () => {
       <TouchableOpacity value='checked'>
         <RadioButton
           color="white"
-          value="first"
+          value="Male"
           status={ checked === 'first' ? 'checked' : 'unchecked' }
           onPress={() => setChecked('Male')}
         />

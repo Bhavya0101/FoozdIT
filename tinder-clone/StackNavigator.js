@@ -36,6 +36,8 @@ const StackNavigator = () => {
                         <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
                         <Stack.Screen name="GenderPage" component={GenderPage} />
                         <Stack.Screen name="GenderPreferrence" component={GenderPreferrence} />
+                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
+                        <Stack.Screen name="AddPictures" component={AddPictures} />
 
                     </Stack.Group>
 
@@ -43,8 +45,7 @@ const StackNavigator = () => {
                         
                         
                         
-                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
-                        <Stack.Screen name="AddPictures" component={AddPictures} />
+                        
                     </Stack.Group>
                     
                 </>
