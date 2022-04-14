@@ -40,7 +40,7 @@ const NamePage = () => {
           style={[tw`px-2 bg-white py-5 rounded-2xl mt-5 pt-5`, {marginHorizontal: "5%"},]}> 
         </TextInput>
         <TouchableOpacity
-           disabled={incompleteForm}
+          disabled={incompleteForm}
           style={[tw`items-center justify-center rounded-full w-156 h-36`]}
           onPress={updateUserName}  
         >
