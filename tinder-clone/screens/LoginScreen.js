@@ -17,12 +17,12 @@ const LoginScreen = () => {
     }, []);
 
     return (
-        <View style={tw`flex-1 bg-[#674389]`}>
-            {/* <ImageBackground 
+        <View style={tw`flex-1`}>
+            <ImageBackground 
                 resizeMode='cover'
                 style={tw`flex-1`}
-                source={require('../pictures/Logo.png')}
-            > */}
+                source={require('../Logo.png')}
+            >
                 <TouchableOpacity
                     style={[
                         tw`absolute bottom-40 w-48 bg-white p-4 rounded-2xl`,
@@ -35,7 +35,7 @@ const LoginScreen = () => {
 
                 
 
-            {/* </ImageBackground> */}
+            </ImageBackground>
         </View>
         
     );
