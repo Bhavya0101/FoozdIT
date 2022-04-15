@@ -55,8 +55,8 @@ const StackNavigator = () => {
                 </>
             ) : (
                 <Stack.Group>
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="IntoScreen" component={IntroScreen} />
+                    <Stack.Screen name="IntroScreen" component={IntroScreen} />
+                    <Stack.Screen name="LoginScreen" component={LoginScreen} />
                 </Stack.Group>
                 
                 

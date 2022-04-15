@@ -6,7 +6,6 @@ import * as Animatable from "react-native-animatable"
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Position from 'react-native/Libraries/Components/Touchable/Position';
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
-import { NavigationContainer } from '@react-navigation/native';
 
 export default function IntroScreen() {
 
@@ -23,7 +22,7 @@ export default function IntroScreen() {
       <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
-        source={require("./assets/foozd_logo.png")}
+        source={require("../assets/foozd_logo.png")}
         style={styles.logo}
         resizeMode="stretch"
         />
@@ -36,7 +35,7 @@ export default function IntroScreen() {
         <Text style={styles.title} >Are you ready to meet new foodies?</Text>
         <Text style={styles.text}>Sign In to continue</Text>
         <View style={styles.button}>
-        <TouchableOpacity style={styles.signIn} onPress={() => navigation.navigate("LogInScreen") }>
+        <TouchableOpacity style={styles.signIn} onPress={() => navigation.navigate("LoginScreen") }>
             <Text style={styles.textSign}>Get Started</Text>
             <MaterialIcons
               name='navigate-next'
