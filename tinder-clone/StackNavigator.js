@@ -14,6 +14,7 @@ import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
 import AnimatedSplash from "react-native-animated-splash-screen";
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -31,29 +32,22 @@ const StackNavigator = () => {
                     
                     <Stack.Group>
 
-                        <Stack.Screen name='LoginScreen' component={LoginScreen} />
-                        <Stack.Screen name="Home" component={HomeScreen} />
-                        <Stack.Screen name="NamePage" component={NamePage} />
-                        <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
-                        
-                        
-
-                        
-                        <Stack.Screen name="Chat" component={ChatScreen} />
+                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
+                        <Stack.Screen name="AddPictures" component={AddPictures} />
 
                     </Stack.Group>
 
                     <Stack.Group screenOptions={{ presentation: 'fullScreenModal' }}>
                         
-                        <Stack.Screen name="GenderPage" component={GenderPage} />
-                        <Stack.Screen name="GenderPreferrence" component={GenderPreferrence} />
-                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
-                        <Stack.Screen name="AddPictures" component={AddPictures} />
+                        
+                        
+                        
                     </Stack.Group>
                     
                 </>
             ) : (
                 <Stack.Screen name="Login" component={LoginScreen} />
+                
                 
             )}
 
