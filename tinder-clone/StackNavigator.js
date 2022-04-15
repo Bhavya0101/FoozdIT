@@ -13,6 +13,10 @@ import GenderPreferrence from './screens/GenderPreferrence';
 import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
 import AnimatedSplash from "react-native-animated-splash-screen";
+<<<<<<< HEAD
+=======
+import ImagePickkker from "./screens/ImagePickker"
+>>>>>>> parent of d0039a4 (Made some changes in the Image Upload page)
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +35,7 @@ const StackNavigator = () => {
                     
                     <Stack.Group>
 
+<<<<<<< HEAD
             
                         <Stack.Screen name="Home" component={HomeScreen} />
                         <Stack.Screen name="NamePage" component={NamePage} />
@@ -39,6 +44,10 @@ const StackNavigator = () => {
                         
 
                     
+=======
+
+                        <StackNavigator name="ImagePicker" component={ImagePickkker}/>
+>>>>>>> parent of d0039a4 (Made some changes in the Image Upload page)
                         <Stack.Screen name="FoodProfile" component={FoodProfile} />
                         <Stack.Screen name="AddPictures" component={AddPictures} />
 
