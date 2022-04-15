@@ -38,8 +38,9 @@ const StackNavigator = () => {
                         
                         
 
-                        
-                        <Stack.Screen name="Chat" component={ChatScreen} />
+                    
+                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
+                        <Stack.Screen name="AddPictures" component={AddPictures} />
 
                     </Stack.Group>
 
