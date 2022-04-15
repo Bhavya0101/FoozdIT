@@ -50,7 +50,6 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      
       {/* Header */}
         <View style={[tw`flex-row items-center justify--between px-5`, {backgroundColor:'#674389'}]}>
           <TouchableOpacity style={tw`absolute left-5 top-11`} onPress={logout}>
