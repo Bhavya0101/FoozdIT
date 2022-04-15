@@ -12,6 +12,7 @@ import GenderPage from './screens/GenderPage';
 import GenderPreferrence from './screens/GenderPreferrence';
 import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
+import IntroScreen from './screens/IntroScreen';
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 const Stack = createNativeStackNavigator();
@@ -53,7 +54,11 @@ const StackNavigator = () => {
                     
                 </>
             ) : (
-                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Group>
+                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen name="IntoScreen" component={IntroScreen} />
+                </Stack.Group>
+                
                 
             )}
 
