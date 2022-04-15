@@ -36,6 +36,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-deck-swiper": "^2.0.5",
     "react-native-fbsdk": "^3.0.0",
+    "react-native-image-picker": "^4.7.3",
     "react-native-navigation": "^7.26.0",
     "react-native-paper": "^4.12.0",
     "react-native-pod": "^1.12.1",
