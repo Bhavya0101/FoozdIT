@@ -32,10 +32,8 @@ const StackNavigator = () => {
                     
                     <Stack.Group>
 
-
-                        <StackNavigator name="ImagePicker" component={ImagePickkker}/>
-                        <Stack.Screen name="FoodProfile" component={FoodProfile} />
                         <Stack.Screen name="AddPictures" component={AddPictures} />
+                        <Stack.Screen name="HomeScreen" component={HomeScreen} />
 
                     </Stack.Group>
 
