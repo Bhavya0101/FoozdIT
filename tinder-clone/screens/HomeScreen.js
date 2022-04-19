@@ -1,10 +1,13 @@
 import { View, Text, Button, SafeAreaView, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import React, {useLayoutEffect, useRef} from "react";
+import React, {useLayoutEffect, useRef, useState} from "react";
 import { useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
+import { onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase';
+import { doc, setDoc } from "@firebase/firestore"
 
 
 const DUMMY_DATA = [
@@ -39,8 +42,18 @@ const DUMMY_DATA = [
 const HomeScreen = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
+    const [profile, setProfile] = useState([])
     const swipeRef = useRef(null);
     console.log(user)
+
+    useLayoutEffect(
+      () => 
+        onSnapshot(doc(db,"users",user.uid), (snapshot) => {
+          if (!snapshot.exists()) {
+            navigation.navigate("NamePage")
+          }
+        })
+    )
 
     useLayoutEffect(() => {
       navigation.setOptions({
@@ -50,7 +63,6 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      
       {/* Header */}
         <View style={[tw`flex-row items-center justify--between px-5`, {backgroundColor:'#674389'}]}>
           <TouchableOpacity style={tw`absolute left-5 top-11`} onPress={logout}>
@@ -76,8 +88,8 @@ const HomeScreen = () => {
         <Swiper
           ref={swipeRef} 
             containerStyle={{backgroundColor: "transparent"}}
-            cards={DUMMY_DATA}
-            stackSize={3}
+            cards={profile}
+            stackSize={10}
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
@@ -106,7 +118,7 @@ const HomeScreen = () => {
                 },
               },
             }}
-            renderCard = {(card) => (
+            renderCard = {(card) => card ? (
               <View key={card.id} style={tw`relative bg-white h-140 rounded-xl`}>
                 <Image
                   style={tw`h-full w-full rounded-xl`}
@@ -131,6 +143,10 @@ const HomeScreen = () => {
                   </View>
                 </View>
 
+              </View>
+            ) : (
+              <View style={[tw`relative bg-white h-3/4 rounded-xl justify-center items-center`,styles.cardShadow]}>
+                <Text style={[tw`font-bold pb-5`]}>No More Cards</Text>
               </View>
             )}
           />
