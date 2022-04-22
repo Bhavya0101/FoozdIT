@@ -5,9 +5,13 @@ import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
+<<<<<<< HEAD
 import { onSnapshot, collection } from 'firebase/firestore';
+=======
+>>>>>>> DyanmicSwipeData
 import { db } from '../firebase';
-import { doc, setDoc } from "@firebase/firestore"
+import { collection, doc, onSnapshot, query, setDoc, getDocs, where } from "@firebase/firestore"
+import { async } from '@firebase/util';
 
 
 const DUMMY_DATA = [
@@ -55,11 +59,18 @@ const HomeScreen = () => {
         })
     )
 
+<<<<<<< HEAD
     useEffect (() => {
+=======
+
+
+    useEffect(() => {
+>>>>>>> DyanmicSwipeData
       let unsub;
 
       const fetchCards = async () => {
         unsub = onSnapshot(collection(db, "users"), (snapshot) => {
+<<<<<<< HEAD
           setProfiles(
             snapshot.docs.map((doc) => ({
               id: doc.id,
@@ -68,11 +79,56 @@ const HomeScreen = () => {
           )
         })
       }
+=======
+          setProfile(
+            snapshot.docs
+              .filter((doc) => doc.id !== user.uid)
+              .map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+              }))
+          )
+        })
+      }
+
+>>>>>>> DyanmicSwipeData
       fetchCards();
       return unsub;
     }, [])
 
+<<<<<<< HEAD
     console.log(profiles)
+=======
+
+
+    console.log(profile)
+
+
+    const swipeLeft = (cardIndex) => {
+      if (!profile[cardIndex]) return;
+
+      const userSwiped = profile[cardIndex];
+      console.log('You swiped Left  ON ${userSwiped.displayName}');
+
+      setDoc(doc(db, "users", user.uid,  "leftSwipe", userSwiped.id),
+      userSwiped);
+    }
+
+
+    const swipeRight = (cardIndex) => {
+      if (!profile[cardIndex]) return;
+
+      const userSwiped = profile[cardIndex];
+      console.log('You swiped Right  ON ${userSwiped.displayName}');
+
+      setDoc(doc(db, "users", user.uid,  "rightSwipe", userSwiped.id),
+      userSwiped);
+    }
+
+
+
+
+>>>>>>> DyanmicSwipeData
     useLayoutEffect(() => {
       navigation.setOptions({
           headerShown: false,
@@ -111,11 +167,13 @@ const HomeScreen = () => {
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
-            onSwipedLeft= {() => {
-              console.log("Swipe Left")
+            onSwipedLeft= {(cardIndex) => {
+              console.log("Swipe Left");
+              swipeLeft(cardIndex)
             }}
-            onSwipedRight= {() => {
-              console.log("Swipe Right")
+            onSwipedRight= {(cardIndex) => {
+              console.log("Swipe Right");
+              swipeRight(cardIndex)
             }}
             overlayLabels={{
               left: {
@@ -140,7 +198,7 @@ const HomeScreen = () => {
               <View key={card.id} style={tw`relative bg-white h-140 rounded-xl`}>
                 <Image
                   style={tw`h-full w-full rounded-xl`}
-                  source={{ uri: card.photo }}
+                  source={{ uri: card.picture1 }}
                 />
 
                 <View style={[tw`absolute bottom-0 w-full flex-row jutify-between
