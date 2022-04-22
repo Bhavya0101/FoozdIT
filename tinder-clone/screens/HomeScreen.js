@@ -10,34 +10,6 @@ import { collection, doc, onSnapshot, query, setDoc, getDocs, where } from "@fir
 import { async } from '@firebase/util';
 
 
-const DUMMY_DATA = [
-  {
-    firstName: "Aditya",
-    lastName: "Mathur",
-    occupation: "Software Engineer",
-    photo: "https://i.postimg.cc/2yM2CC5x/Adii-1.jpg",
-    age: 23, 
-    id: 1,
-  },
-  {
-    firstName: "Naman",
-    lastName: "Jain",
-    occupation: "Co-Founder @ FoozdIT",
-    photo: "https://i.postimg.cc/85HC8Ctq/Naman-1.png",
-    age: 24,
-    id: 2
-  },
-  {
-    firstName: "Bhavya",
-    lastName: "Sharma",
-    occupation: "Co-Founder @ FoozdIT",
-    photo: "https://i.postimg.cc/bwcfThRb/Bhavya-1.png",
-    age: 22,
-  },
-
-
-]
-
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -69,8 +41,8 @@ const HomeScreen = () => {
             (snapshot) => snapshot.docs.map((doc) => doc.id)
           );
 
-          const passedUserIds  = passes.lenght > 0 ? passes : ["test"];
-          const swipedUserIds = swipes.lenght > 0 ? swipes : ["test"];
+          const passedUserIds  = passes.length > 0 ? passes : ["test"];
+          const swipedUserIds = swipes.length > 0 ? swipes : ["test"];
 
           console.log([...passedUserIds, ...swipedUserIds]);
 
