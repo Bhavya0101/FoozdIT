@@ -1,10 +1,13 @@
 import { View, Text, Button, SafeAreaView, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import React, {useLayoutEffect, useRef} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import { useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
+import { onSnapshot, collection } from 'firebase/firestore';
+import { db } from '../firebase';
+import { doc, setDoc } from "@firebase/firestore"
 
 
 const DUMMY_DATA = [
@@ -13,7 +16,7 @@ const DUMMY_DATA = [
     lastName: "Mathur",
     occupation: "Software Engineer",
     photo: "https://i.postimg.cc/2yM2CC5x/Adii-1.jpg",
-    age: 23,
+    age: 23, 
     id: 1,
   },
   {
@@ -39,9 +42,37 @@ const DUMMY_DATA = [
 const HomeScreen = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
+    const [profiles, setProfiles] = useState([])
     const swipeRef = useRef(null);
     console.log(user)
 
+    useLayoutEffect(
+      () => 
+        onSnapshot(doc(db,"users",user.uid), (snapshot) => {
+          if (!snapshot.exists()) {
+            navigation.navigate("NamePage")
+          }
+        })
+    )
+
+    useEffect (() => {
+      let unsub;
+
+      const fetchCards = async () => {
+        unsub = onSnapshot(collection(db, "users"), (snapshot) => {
+          setProfiles(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }))
+          )
+        })
+      }
+      fetchCards();
+      return unsub;
+    }, [])
+
+    console.log(profiles)
     useLayoutEffect(() => {
       navigation.setOptions({
           headerShown: false,
@@ -75,8 +106,8 @@ const HomeScreen = () => {
         <Swiper
           ref={swipeRef} 
             containerStyle={{backgroundColor: "transparent"}}
-            cards={DUMMY_DATA}
-            stackSize={3}
+            cards={profiles}
+            stackSize={10}
             cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
@@ -105,7 +136,7 @@ const HomeScreen = () => {
                 },
               },
             }}
-            renderCard = {(card) => (
+            renderCard = {(card) => card ? (
               <View key={card.id} style={tw`relative bg-white h-140 rounded-xl`}>
                 <Image
                   style={tw`h-full w-full rounded-xl`}
@@ -122,14 +153,15 @@ const HomeScreen = () => {
                         shadowOffset: {width: 0, height: 10,}
                       }]}>
                       
-                      {card.firstName} {card.lastName} {','} {card.age}
-                    </Text>
-                    <Text style={styles.textDecoration}>
-                      {card.occupation}
+                      {card.name}
                     </Text>
                   </View>
                 </View>
 
+              </View>
+            ) : (
+              <View style={tw`relative bg-white h-140 rounded-xl`}>
+                <Text style={[tw`font-bold pb-5`]}>No More Cards</Text>
               </View>
             )}
           />

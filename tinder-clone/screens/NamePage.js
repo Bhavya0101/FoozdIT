@@ -16,7 +16,7 @@ const NamePage = () => {
   const updateUserName = () => {
     setDoc(doc(db,'users', user.uid), {
       id:user.uid,
-      name: fName
+      name: fName,
     }).then(() => {
       navigation.navigate('BdayDatePage')
     })
