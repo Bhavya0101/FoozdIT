@@ -5,10 +5,6 @@ import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
-<<<<<<< HEAD
-import { onSnapshot, collection } from 'firebase/firestore';
-=======
->>>>>>> DyanmicSwipeData
 import { db } from '../firebase';
 import { collection, doc, onSnapshot, query, setDoc, getDocs, where } from "@firebase/firestore"
 import { async } from '@firebase/util';
@@ -46,7 +42,7 @@ const DUMMY_DATA = [
 const HomeScreen = () => {
     const navigation = useNavigation();
     const { user, logout } = useAuth();
-    const [profiles, setProfiles] = useState([])
+    const [profile, setProfile] = useState([])
     const swipeRef = useRef(null);
     console.log(user)
 
@@ -59,27 +55,13 @@ const HomeScreen = () => {
         })
     )
 
-<<<<<<< HEAD
-    useEffect (() => {
-=======
 
 
     useEffect(() => {
->>>>>>> DyanmicSwipeData
       let unsub;
 
       const fetchCards = async () => {
         unsub = onSnapshot(collection(db, "users"), (snapshot) => {
-<<<<<<< HEAD
-          setProfiles(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            }))
-          )
-        })
-      }
-=======
           setProfile(
             snapshot.docs
               .filter((doc) => doc.id !== user.uid)
@@ -91,14 +73,10 @@ const HomeScreen = () => {
         })
       }
 
->>>>>>> DyanmicSwipeData
       fetchCards();
       return unsub;
     }, [])
 
-<<<<<<< HEAD
-    console.log(profiles)
-=======
 
 
     console.log(profile)
@@ -128,7 +106,6 @@ const HomeScreen = () => {
 
 
 
->>>>>>> DyanmicSwipeData
     useLayoutEffect(() => {
       navigation.setOptions({
           headerShown: false,
@@ -162,7 +139,7 @@ const HomeScreen = () => {
         <Swiper
           ref={swipeRef} 
             containerStyle={{backgroundColor: "transparent"}}
-            cards={profiles}
+            cards={profile}
             stackSize={10}
             cardIndex={0}
             animateCardOpacity
