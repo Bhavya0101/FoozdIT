@@ -179,7 +179,7 @@ const HomeScreen = () => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
-                    <Image source={require('../foozdIcon.png')} style={styles.bottomFIcon}/>
+                    <Image source={require('../pictures/foozdIcon.png')} style={styles.bottomFIcon}/>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[tw`items-center justify-center rounded-full w-16 h-16`]}>
