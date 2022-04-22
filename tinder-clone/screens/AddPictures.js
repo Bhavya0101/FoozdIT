@@ -89,4 +89,3 @@ const AddPictures = () => {
 }
 
 export default AddPictures
-

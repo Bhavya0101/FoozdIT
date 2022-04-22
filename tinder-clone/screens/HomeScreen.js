@@ -61,7 +61,21 @@ const HomeScreen = () => {
       let unsub;
 
       const fetchCards = async () => {
-        unsub = onSnapshot(collection(db, "users"), (snapshot) => {
+          const passes = await getDocs(collection(db, "users", user.uid,"passes")).then(
+            (snapshot) => snapshot.docs.map((doc) => doc.id)
+          );
+
+          const swipes = await getDocs(collection(db, "users", user.uid,"swipes")).then(
+            (snapshot) => snapshot.docs.map((doc) => doc.id)
+          );
+
+          const passedUserIds  = passes.lenght > 0 ? passes : ["test"];
+          const swipedUserIds = swipes.lenght > 0 ? swipes : ["test"];
+
+          console.log([...passedUserIds, ...swipedUserIds]);
+
+        unsub = onSnapshot(
+          query(collection(db, "users"), where('id', 'not-in', [...passedUserIds, ...swipedUserIds])), (snapshot) => {
           setProfile(
             snapshot.docs
               .filter((doc) => doc.id !== user.uid)
@@ -75,32 +89,35 @@ const HomeScreen = () => {
 
       fetchCards();
       return unsub;
-    }, [])
+    }, [db])
 
 
 
     console.log(profile)
 
 
-    const swipeLeft = (cardIndex) => {
+    const swipeLeft = async (cardIndex) => {
       if (!profile[cardIndex]) return;
 
       const userSwiped = profile[cardIndex];
-      console.log('You swiped Left  ON ${userSwiped.displayName}');
+      console.log('You swiped Left  ON ${userSwiped.displayname}');
 
-      setDoc(doc(db, "users", user.uid,  "leftSwipe", userSwiped.id),
+      setDoc(doc(db, "users", user.uid,  "passes", userSwiped.id),
       userSwiped);
     }
 
 
-    const swipeRight = (cardIndex) => {
+    const swipeRight = async (cardIndex) => {
       if (!profile[cardIndex]) return;
 
       const userSwiped = profile[cardIndex];
-      console.log('You swiped Right  ON ${userSwiped.displayName}');
 
-      setDoc(doc(db, "users", user.uid,  "rightSwipe", userSwiped.id),
-      userSwiped);
+      console.log(
+        'You Swiped on ${userSwiped.displayname}'
+      );
+      setDoc(
+        doc(db, "users", user.uid, "swipes", userSwiped.id),
+      userSwiped)
     }
 
 
