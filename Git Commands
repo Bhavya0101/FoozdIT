@@ -1,0 +1,14 @@
+Git Commands
+
+
+Create a new branch
+-> git checkout -b "New Branch Name"
+
+Commit all the chages into the branch
+-> git commit -m "Comment Message"
+
+Merge the branch into the main branch
+-> git checkout main
+-> git merge name of the branch
+
+Accept the incoming changes and commit to main branch if everthing runs as expcted
