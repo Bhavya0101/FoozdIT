@@ -86,4 +86,6 @@ const BdayDatePage = () => {
   )
 }
 
+
 export default BdayDatePage
+
