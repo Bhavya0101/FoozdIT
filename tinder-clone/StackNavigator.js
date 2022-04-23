@@ -15,6 +15,7 @@ import AddPictures from './screens/AddPictures';
 import IntroScreen from './screens/IntroScreen';
 import AnimatedSplash from "react-native-animated-splash-screen";
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -31,7 +32,7 @@ const StackNavigator = () => {
                 <>
                     
                     <Stack.Group>
-
+                        <Stack.Screen name="IntroScreen" component={IntroScreen} />
                         <Stack.Screen name='LoginScreen' component={LoginScreen} />
                         <Stack.Screen name="Home" component={HomeScreen} />
                         <Stack.Screen name="NamePage" component={NamePage} />
@@ -57,9 +58,11 @@ const StackNavigator = () => {
                 <Stack.Group>
                     <Stack.Screen name="IntroScreen" component={IntroScreen} />
                     <Stack.Screen name="LoginScreen" component={LoginScreen} />
+                    <Stack.Screen name="MobileNumberVerification" component={MobileNumberVerification} />
+                    <Stack.Screen name="OtpEnterPage" component={OtpEnterPage} />
+                    <Stack.Screen name="NamePage" component={NamePage} />
+                    <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
                 </Stack.Group>
-                
-                
             )}
 
         </Stack.Navigator>

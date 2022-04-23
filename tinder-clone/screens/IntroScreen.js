@@ -6,6 +6,27 @@ import * as Animatable from "react-native-animatable"
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Position from 'react-native/Libraries/Components/Touchable/Position';
 import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { useFonts,
+  Montserrat_100Thin,
+  Montserrat_100Thin_Italic,
+  Montserrat_200ExtraLight,
+  Montserrat_200ExtraLight_Italic,
+  Montserrat_300Light,
+  Montserrat_300Light_Italic,
+  Montserrat_400Regular,
+  Montserrat_400Regular_Italic,
+  Montserrat_500Medium,
+  Montserrat_500Medium_Italic,
+  Montserrat_600SemiBold,
+  Montserrat_600SemiBold_Italic,
+  Montserrat_700Bold,
+  Montserrat_700Bold_Italic,
+  Montserrat_800ExtraBold,
+  Montserrat_800ExtraBold_Italic,
+  Montserrat_900Black,
+  Montserrat_900Black_Italic 
+} from '@expo-google-fonts/montserrat'
+import { processFontFamily } from 'expo-font';
 
 export default function IntroScreen() {
 
@@ -16,6 +37,10 @@ export default function IntroScreen() {
     }, []);
 
     const navigation = useNavigation();
+
+    let [fontsLoaded] = useFonts({
+      Montserrat_500Medium,
+    });
 
   return (
     <View style={styles.container}>
@@ -76,12 +101,15 @@ export default function IntroScreen() {
     },
     title: {
         color: '#05375a',
-        fontSize: 30,
-        fontWeight: 'bold'
+        fontSize: 25,
+        // fontWeight: 'bold',
+        fontFamily:'Montserrat_500Medium',
     },
     text: {
         color: 'grey',
-        marginTop:5
+        marginTop:5,
+        fontFamily:'Montserrat_500Medium',
+        fontSize:14
     },
     button: {
         alignItems: 'flex-end',
@@ -98,6 +126,7 @@ export default function IntroScreen() {
     },
     textSign: {
         color: 'white',
-        fontWeight: 'bold'
+        // fontWeight: 'bold',
+        fontFamily:'Montserrat_500Medium',
     }
   });
