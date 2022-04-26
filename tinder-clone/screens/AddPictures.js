@@ -5,7 +5,6 @@ import tw from 'twrnc';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import useAuth from '../hooks/useAuth';
 import * as ImagePicker from 'expo-image-picker';
-import * as Progress from 'react-native-progress';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { db } from "../firebase"
 import { doc, setDoc, updateDoc } from "@firebase/firestore"
