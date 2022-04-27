@@ -12,7 +12,9 @@ import GenderPage from './screens/GenderPage';
 import GenderPreferrence from './screens/GenderPreferrence';
 import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
+import Match from './screens/MatchScreen'
 import AnimatedSplash from "react-native-animated-splash-screen";
+import MatchScreen from './screens/MatchScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +47,10 @@ const StackNavigator = () => {
                         <Stack.Screen name="FoodProfile" component={FoodProfile} />
                         <Stack.Screen name="AddPictures" component={AddPictures} />
                         
+                    </Stack.Group>
+
+                    <Stack.Group screenOptions={{presentation: 'transparentModal'}}>
+                        <Stack.Screen name='Match' component={MatchScreen}/>
                     </Stack.Group>
                     
                 </>

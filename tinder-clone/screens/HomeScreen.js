@@ -1,13 +1,23 @@
 import { View, Text, Button, SafeAreaView, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import { useNavigation } from '@react-navigation/native'
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native'
 import useAuth from '../hooks/useAuth';
 import tw from 'twrnc';
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper"
 import { db } from '../firebase';
-import { collection, doc, onSnapshot, query, setDoc, getDocs, where } from "@firebase/firestore"
+import { 
+  collection, 
+  doc, 
+  onSnapshot, 
+  query, 
+  setDoc, 
+  getDocs, 
+  where, 
+  getDoc, 
+  serverTimestamp } from "@firebase/firestore"
 import { async } from '@firebase/util';
+import generateId from '../lib/generateId'
 
 
 
@@ -44,7 +54,6 @@ const HomeScreen = () => {
           const passedUserIds  = passes.length > 0 ? passes : ["test"];
           const swipedUserIds = swipes.length > 0 ? swipes : ["test"];
 
-          console.log([...passedUserIds, ...swipedUserIds]);
 
         unsub = onSnapshot(
           query(collection(db, "users"), where('id', 'not-in', [...passedUserIds, ...swipedUserIds])), (snapshot) => {
@@ -68,29 +77,62 @@ const HomeScreen = () => {
     console.log(profile)
 
 
-    const swipeLeft = async (cardIndex) => {
+    const swipeLeft =  (cardIndex) => {
       if (!profile[cardIndex]) return;
 
       const userSwiped = profile[cardIndex];
-      console.log('You swiped Left  ON ${userSwiped.displayname}');
+      console.log('You swiped Left on ', userSwiped.name);
 
       setDoc(doc(db, "users", user.uid,  "passes", userSwiped.id),
       userSwiped);
-    }
+    } 
 
 
     const swipeRight = async (cardIndex) => {
       if (!profile[cardIndex]) return;
 
       const userSwiped = profile[cardIndex];
+      const loggedInProfile = await (
+        await getDoc(doc(db, 'users', user.uid))
+      ).data()
 
-      console.log(
-        'You Swiped on ${userSwiped.displayname}'
-      );
-      setDoc(
-        doc(db, "users", user.uid, "swipes", userSwiped.id),
-      userSwiped)
-    }
+      // Check If the User Swiped On You
+      getDoc(doc(db, "users", userSwiped.id, 'swipes', user.uid)).then(
+        (documentSnapshot) => {
+
+          if (documentSnapshot.exists()) {
+            // User Matched with you before you
+            console.log('You Matched with : ', userSwiped.name)
+             
+            setDoc(doc
+              (db, "users", user.uid, "swipes", userSwiped.id),
+            userSwiped
+            );
+
+            // Create a Match
+            setDoc(doc(db, 'matches', generateId(user.uid, userSwiped.id)), {
+              users: {
+                [user.uid]: loggedInProfile,
+                [userSwiped.id]: userSwiped,
+              },
+              usersMatched: [user.uid, userSwiped.id],
+              timestamp: serverTimestamp(),
+            });
+
+            navigation.navigate('Match', {
+              loggedInProfile,
+              userSwiped,
+            })
+
+          } else {
+            console.log('You swiped Left on ', userSwiped.name);
+            setDoc(doc
+              (db, "users", user.uid,  "swipes", userSwiped.id),
+              userSwiped);
+          }
+        }
+      )
+    } 
 
 
 
