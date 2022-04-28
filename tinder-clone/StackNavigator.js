@@ -12,9 +12,10 @@ import GenderPage from './screens/GenderPage';
 import GenderPreferrence from './screens/GenderPreferrence';
 import FoodProfile from './screens/FoodProfile';
 import AddPictures from './screens/AddPictures';
-import Match from './screens/MatchScreen'
+import IntroScreen from './screens/IntroScreen';
 import AnimatedSplash from "react-native-animated-splash-screen";
 import MatchScreen from './screens/MatchScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -32,17 +33,14 @@ const StackNavigator = () => {
                 <>
                     
                     <Stack.Group>
-                        
-                        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+                        <Stack.Screen name="Home" component={HomeScreen} />
                         <Stack.Screen name="ChatScreen" component={ChatScreen} />
 
                     </Stack.Group>
 
                     <Stack.Group screenOptions={{ presentation: 'modal' }}>
 
-                        <Stack.Screen name='NamePage' component={NamePage} />
-                        <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
-                        <Stack.Screen name="GenderPage" component={GenderPage} />
+                       
                         <Stack.Screen name="GenderPreferrence" component={GenderPreferrence} />
                         <Stack.Screen name="FoodProfile" component={FoodProfile} />
                         <Stack.Screen name="AddPictures" component={AddPictures} />
@@ -55,8 +53,15 @@ const StackNavigator = () => {
                     
                 </>
             ) : (
-                <Stack.Screen name="Login" component={LoginScreen} />
-                
+                <Stack.Group>
+                    <Stack.Screen name="IntroScreen" component={IntroScreen} />
+                    <Stack.Screen name="LoginScreen" component={LoginScreen} />
+                    <Stack.Screen name="MobileNumberVerification" component={MobileNumberVerification} />
+                    <Stack.Screen name="OtpEnterPage" component={OtpEnterPage} />
+                    <Stack.Screen name='NamePage' component={NamePage} />
+                    <Stack.Screen name="BdayDatePage" component={BdayDatePage} />
+                    <Stack.Screen name="GenderPage" component={GenderPage} />
+                </Stack.Group>
             )}
 
         </Stack.Navigator>
