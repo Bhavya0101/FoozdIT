@@ -158,7 +158,7 @@ const HomeScreen = () => {
             <Text style={[tw`absolute left-34 top-14 text-xl` , {color: '#674389',fontWeight: 'bold',fontSize:30}]}>Foozd</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={tw`absolute left-85 top-11`} onPress={() => navigation.navigate("Chat")}>
+          <TouchableOpacity style={tw`absolute left-85 top-11`} onPress={() => navigation.navigate("ChatScreen")}>
             <Ionicons name='chatbubbles-sharp' size={38} color="#674389"/>
           </TouchableOpacity>
 
