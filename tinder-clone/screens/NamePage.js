@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import tw, { create } from 'twrnc';
@@ -15,55 +15,54 @@ const NamePage = () => {
   const incompleteForm = !fName;
 
   const updateUserName = () => {
-    setDoc(doc(db,'users', user.uid), {
-      id:user.uid,
+    setDoc(doc(db, 'users', user.uid), {
+      id: user.uid,
       name: fName
     }).then(() => {
       navigation.navigate('BdayDatePage')
     })
-    .catch((error) => {
-      alert(error.message);
-    })
+      .catch((error) => {
+        alert(error.message);
+      })
   };
 
-        useLayoutEffect(() => {
-            navigation.setOptions({
-                headerShown: false,
-            });
-        }, []);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
   return (
-    <View style={{flex: 1, backgroundColor: '#674389'}}>
+    <View style={{ flex: 1, backgroundColor: '#674389' }}>
       <View style={styles.textView}>
-        <TouchableOpacity onPress={ () => navigation.navigate('OtpEnterPage')}>
-          <Ionicons name="md-chevron-back-outline" size={30} color="black" style={styles.backBtn}/>
+        <TouchableOpacity onPress={() => navigation.navigate('OtpEnterPage')}>
+          <Ionicons name="md-chevron-back-outline" size={30} color="black" style={styles.backBtn} />
         </TouchableOpacity>
         <Text style={styles.text}>What is your{'\n'}name?</Text>
-        </View>
-       <View style={styles.inputView}>
+      </View>
+      <View style={styles.inputView}>
         <TextInput
           value={fName}
-          onChangeText={setfName} 
-          placeholder="First Name" 
+          onChangeText={setfName}
+          placeholder="First Name"
           fontSize='22'
           placeholderTextColor={'#D1CAD8'}
-        style={styles.textInput}> 
+          style={styles.textInput}>
         </TextInput>
-        </View>
-        <View style={styles.noticeView}>
-        <Text style={styles.noticeText}>This is how your name will appear on Foozd.{'\n'}You won't be able to change it later.</Text>   
-        </View>
-        <View style={styles.btnView}>
+      </View>
+      <View style={styles.noticeView}>
+        <Text style={styles.noticeText}>This is how your name will appear on Foozd.{'\n'}You won't be able to change it later.</Text>
+      </View>
+      <View style={styles.btnView}>
         <TouchableOpacity
           disabled={incompleteForm}
           onPress={() => navigation.navigate('BdayDatePage')}
-          
-         style={styles.button}> 
-        <MaterialIcons name="navigate-next" size={30} color="#F9F9F9" />
+          style={styles.button}>
+          <MaterialIcons name="navigate-next" size={30} color="#F9F9F9" />
         </TouchableOpacity>
-        </View>
-        
-       
-        
+      </View>
+
+
+
     </View>
   )
 }
@@ -73,14 +72,14 @@ export default NamePage
 const styles = StyleSheet.create({
   textView: {
     backgroundColor: "#674389",
-    flex:1,
+    flex: 1,
     justifyContent: "flex-end",
-    
+
   },
   inputView: {
-    flex:0.3,
+    flex: 0.3,
     backgroundColor: "#674389",
-    alignItems:"center",
+    alignItems: "center",
     justifyContent: 'center',
   },
   btnView: {
@@ -95,14 +94,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#00ACC1',
-    marginLeft: 39,
-    padding:10,
     borderRadius: 100,
-    marginRight: 30 
+    marginRight: "9%",
+    marginTop: '6%'
   },
   nextBtn: {
     alignContent: "center",
-    paddingBottom: 50,
     color: '#D1CAD8'
   },
   text: {
@@ -118,9 +115,9 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 50,
     borderRadius: 10,
-    textAlign:"left",
+    textAlign: "left",
     paddingLeft: '4%'
-  }, 
+  },
   backBtn: {
     marginLeft: '8%',
     paddingBottom: '10%',
@@ -128,11 +125,11 @@ const styles = StyleSheet.create({
   },
   noticeView: {
     flex: 0.3,
-    backgroundColor:"#674389",
+    backgroundColor: "#674389",
     flexDirection: 'row',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    alignItems:'flex-start',
+    alignItems: 'flex-start',
     marginLeft: '9%',
     marginTop: '2%',
   },
@@ -141,5 +138,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat_500Medium',
     color: '#D1CAD8',
     marginLeft: "1%"
-  }, 
+  },
 })

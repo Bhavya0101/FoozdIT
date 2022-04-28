@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { View, Text, Button, StyleSheet, ImageBackground, TouchableOpacity, TextInput } from "react-native";
 import tw from 'twrnc';
@@ -6,22 +6,22 @@ import useAuth from '../hooks/useAuth';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { Montserrat_400Regular, Montserrat_500Medium } from "@expo-google-fonts/montserrat";
-import { AntDesign, FontAwesomeIcon, Ionicons} from '@expo/vector-icons'; 
+import { AntDesign, FontAwesomeIcon, Ionicons } from '@expo/vector-icons';
 import AntIcon from "react-native-vector-icons/AntDesign";
 
 const OtpEnterPage = () => {
-    const navigation = useNavigation();
-    const { user, logout } = useAuth();
-    const [otp, setOtp] = useState(null);
-    const incompleteForm = !otp;
+  const navigation = useNavigation();
+  const { user, logout } = useAuth();
+  const [otp, setOtp] = useState(null);
+  const incompleteForm = !otp;
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        });
-    }, []);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
-    
+
 
   return (
     // <View style={{flex: 1, backgroundColor: '#674389'}}>
@@ -45,56 +45,51 @@ const OtpEnterPage = () => {
     //       >
     //         <Text style={tw`font-semibold text-center`}>Verify OTP</Text>
     //     </TouchableOpacity>
-        
-      
+
+
     // </View>
     <View style={styles.container}>
       <View style={styles.textView}>
-      <TouchableOpacity onPress={ () => navigation.navigate('MobileNumberVerification')}>
-        <Ionicons name="md-chevron-back-outline" size={30} color="black" style={styles.backBtn}/>
-      </TouchableOpacity>
-      <Text style={styles.text}>Enter the{'\n'}verification code</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('MobileNumberVerification')}>
+          <Ionicons name="md-chevron-back-outline" size={30} color="black" style={styles.backBtn} />
+        </TouchableOpacity>
+        <Text style={styles.text}>Enter the{'\n'}verification code</Text>
       </View>
       <View style={styles.inputView}>
         <OTPInputView
-            style={{width: '80%', height: 200, fontFamily: Montserrat_400Regular}}
-            pinCount={4}
-            // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-            // onCodeChanged = {code => { this.setState({code})}}
-            autoFocusOnLoad41144
-            codeInputFieldStyle={styles.underlineStyleBase}
-            codeInputHighlightStyle={styles.underlineStyleHighLighted}
-            onCodeFilled = {(code => {
-                console.log(`Code is ${code}, you are good to go!`)
-                })
-             }
+          style={{ width: '80%', height: 200, fontFamily: Montserrat_400Regular }}
+          pinCount={4}
+          // code={this.state.code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+          // onCodeChanged = {code => { this.setState({code})}}
+          autoFocusOnLoad41144
+          codeInputFieldStyle={styles.underlineStyleBase}
+          codeInputHighlightStyle={styles.underlineStyleHighLighted}
+          onCodeFilled={(code => {
+            console.log(`Code is ${code}, you are good to go!`)
+          })
+          }
         />
       </View>
       <View style={styles.resendView}>
         <TouchableOpacity>
-        <Text style={styles.resendText}> Resend verification code</Text>   
+          <Text style={styles.resendText}> Resend verification code</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.btnView}>
         < TouchableOpacity style={styles.button} onPress={() => navigation.navigate('NamePage')}>
-          <Text style={styles.continueText}></Text>
-          <MaterialIcons
-                name='navigate-next'
-                color="#fff"
-                size={40}
-          style={styles.nextBtn} />
+          <MaterialIcons name="navigate-next" size={30} color="black" style={styles.nextBtn} />
         </TouchableOpacity>
       </View>
     </View>
-    
+
   )
-  
+
 }
 
 export default OtpEnterPage
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: "#674389"
   },
@@ -108,26 +103,26 @@ const styles = StyleSheet.create({
   },
   textView: {
     backgroundColor: "#674389",
-    flex:1,
+    flex: 1,
     justifyContent: "flex-end",
-    
+
   },
   inputView: {
-    flex:0.3,
+    flex: 0.3,
     backgroundColor: "#674389",
-    alignItems:"center",
-    justifyContent:'center',
+    alignItems: "center",
+    justifyContent: 'center',
   },
   resendView: {
     flex: 0.3,
-    backgroundColor:"#674389",
+    backgroundColor: "#674389",
     flexDirection: 'row',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    alignItems:'flex-start',
+    alignItems: 'flex-start',
     marginLeft: '9%',
     marginTop: '2%',
-    
+
   },
   btnView: {
     flex: 2,
@@ -141,14 +136,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#00ACC1',
-    marginLeft: 39,
-    padding:10,
     borderRadius: 100,
-    marginRight: 30 
+    marginRight: "9%",
+    marginTop: '6%'
   },
   nextBtn: {
     alignContent: "center",
-    paddingBottom: 50,
     color: '#D1CAD8'
   },
   borderStyleBase: {
@@ -173,7 +166,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'Montserrat_500Medium',
     color: '#D1CAD8'
-  }, 
+  },
   backBtn: {
     marginLeft: '9%',
     paddingBottom: '10%',
