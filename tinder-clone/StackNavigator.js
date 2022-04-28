@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
     const { user } = useAuth();
-    
+
     return (
         <Stack.Navigator
             ScreenOptions={{
@@ -31,7 +31,7 @@ const StackNavigator = () => {
         >
             {user ? (
                 <>
-                    
+
                     <Stack.Group>
                         <Stack.Screen name="Home" component={HomeScreen} />
                         <Stack.Screen name="ChatScreen" component={ChatScreen} />
@@ -50,7 +50,7 @@ const StackNavigator = () => {
                     <Stack.Group screenOptions={{presentation: 'transparentModal'}}>
                         <Stack.Screen name='Match' component={MatchScreen}/>
                     </Stack.Group>
-                    
+
                 </>
             ) : (
                 <Stack.Group>
