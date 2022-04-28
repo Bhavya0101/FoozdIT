@@ -4,7 +4,7 @@ import { View, Text, Button, ImageBackground, TouchableOpacity, TextInput } from
 import tw from 'twrnc';
 import useAuth from '../hooks/useAuth';
 import { db } from "../firebase"
-import { doc, setDoc } from "@firebase/firestore"
+import { doc, setDoc, serverTimestamp } from "@firebase/firestore"
 import { AntDesign, Entypo, Ionicons, FontAwesome5 } from "@expo/vector-icons";
 
 const NamePage = () => {
@@ -17,6 +17,7 @@ const NamePage = () => {
     setDoc(doc(db,'users', user.uid), {
       id:user.uid,
       name: fName,
+      timestamp: serverTimestamp(),
     }).then(() => {
       navigation.navigate('BdayDatePage')
     })
